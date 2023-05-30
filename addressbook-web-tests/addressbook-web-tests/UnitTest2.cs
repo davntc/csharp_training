@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Timers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -54,10 +55,10 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("pass")).Clear();
             driver.FindElement(By.Name("pass")).SendKeys("secret");
             driver.FindElement(By.Id("LoginForm")).Click();
-            //driver.FindElement(By.CssSelector("input[type=submit]")).Click();
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+            driver.Navigate().GoToUrl("http://localhost/addressbook/");
+            driver.FindElement(By.LinkText("groups")).Click();
             driver.FindElement(By.Name("new")).Click();
-            driver.FindElement(By.XPath("//form[@action='/addressbook/group.php']")).Click();
             driver.FindElement(By.Name("group_name")).Click();
             driver.FindElement(By.Name("group_name")).Clear();
             driver.FindElement(By.Name("group_name")).SendKeys("test");
