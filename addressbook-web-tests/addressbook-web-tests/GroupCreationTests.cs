@@ -11,10 +11,10 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
-namespace addressbook_web_tests
+namespace WebAddressbookTests
 {
     [TestFixture]
-    public class UntitledTestCase
+    public class GroupCreationTests
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -46,7 +46,7 @@ namespace addressbook_web_tests
         }
 
         [Test]
-        public void TheUntitledTestCaseTest()
+        public void GroupCreationTest()
         {
             driver.Navigate().GoToUrl(baseURL);
             driver.FindElement(By.Name("user")).Clear();
@@ -54,7 +54,7 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("pass")).Click();
             driver.FindElement(By.Name("pass")).Clear();
             driver.FindElement(By.Name("pass")).SendKeys("secret");
-            driver.FindElement(By.Id("LoginForm")).Click();
+            //driver.FindElement(By.Id("LoginForm")).Click();
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
             driver.Navigate().GoToUrl("http://localhost/addressbook/");
             driver.FindElement(By.LinkText("groups")).Click();
