@@ -42,7 +42,7 @@ namespace WebAddressbookTests
         }
 
         [Test]
-        public void TheUntitledTestCaseTest()
+        public void ContactCreationTest()
         {
             OpenHomePage();
             Login(new AccountData("admin", "secret"));
