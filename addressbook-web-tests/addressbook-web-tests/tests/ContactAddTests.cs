@@ -18,14 +18,13 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            app.Navigator.OpenHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
-            app.Contacts.GoToAddingNewContact();
+           
+            
             ContactData contact = new ContactData("Ivan");
             contact.Lastname = "Ivanov";
-            app.Contacts.FillContactFormm(contact);
-            app.Contacts.AcceptContactInfo();
-            app.Contacts.GoToHomepage();
+
+            app.Contacts.ContAdd(contact);
+            
 
         }
                                  
