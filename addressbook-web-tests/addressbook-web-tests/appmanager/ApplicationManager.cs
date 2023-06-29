@@ -36,8 +36,9 @@ namespace WebAddressbookTests
 
         }
 
-         ~ApplicationManager()
-        {
+        ~ApplicationManager()
+       {
+            
             try
             {
                 driver.Quit();
@@ -51,8 +52,10 @@ namespace WebAddressbookTests
         public static ApplicationManager GetInstance()
         {
             if (! app.IsValueCreated) 
-            { 
-                app.Value = new ApplicationManager();
+            {
+                ApplicationManager newInstance = new ApplicationManager();  
+                //app.Value = newInstance();
+                newInstance.Navigator.OpenHomePage();
             }   
             return app.Value;
         }
