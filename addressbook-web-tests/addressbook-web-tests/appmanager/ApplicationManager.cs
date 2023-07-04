@@ -26,7 +26,9 @@ namespace WebAddressbookTests
 
         private ApplicationManager()
         {
+           // driver = new ChromeDriver();
             driver = new ChromeDriver();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             baseURL = "http://localhost/addressbook";
 
             loginHelper = new LoginHelper(this);
@@ -53,8 +55,8 @@ namespace WebAddressbookTests
         {
             if (! app.IsValueCreated) 
             {
-                ApplicationManager newInstance = new ApplicationManager();  
-                //app.Value = newInstance();
+                ApplicationManager newInstance = new ApplicationManager();
+                app.Value = newInstance;
                 newInstance.Navigator.OpenHomePage();
             }   
             return app.Value;

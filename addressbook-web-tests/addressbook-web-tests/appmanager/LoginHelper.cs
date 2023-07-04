@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
@@ -38,22 +37,23 @@ namespace WebAddressbookTests
         {
             if (IsLoggedIn())
             {
+
                 driver.FindElement(By.LinkText("Logout")).Click();
-                
-                                    
+                driver.FindElement(By.Name("user"));
+
             }
             
         }
         
         public bool IsLoggedIn()
         {
-            return IsElementPresent(By.Name("Logout"));
+            return IsElementPresent(By.Name("logout"));
             
         }
         public bool IsLoggedIn(AccountData account)
         {
             return IsLoggedIn()
-                && driver.FindElement(By.Name("Logout")).FindElement(By.TagName("b")).Text 
+                && driver.FindElement(By.Name("logout")).FindElement(By.TagName("b")).Text 
                     == "(" + account.Username + ")";
             
         }
