@@ -26,7 +26,7 @@ namespace WebAddressbookTests
 
         private ApplicationManager()
         {
-           // driver = new ChromeDriver();
+           
             driver = new ChromeDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             baseURL = "http://localhost/addressbook";
@@ -61,6 +61,8 @@ namespace WebAddressbookTests
             }   
             return app.Value;
         }
+
+
 
         public IWebDriver Driver 
         {

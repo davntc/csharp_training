@@ -96,6 +96,23 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("edit")).Click();
             return this;
         }
+        public void GroupListCheck()
+        {
+            if (driver.FindElements(By.CssSelector(".group")).Count == 0)
+
+            {
+                manager.Navigator.GoToGroupsPage();
+                InitNewGroupCreation();
+                Type(By.Name("group_name"), "there is no");
+                Type(By.Name("group_header"), "group");
+                Type(By.Name("group_footer"), "created");
+                SubmitGroupCreation();
+                manager.Navigator.GoToGroupsPage();
+                //если в тесте модификации групп пусто этот метод создаёт группу
+            }
+
+        }
+
 
     }
 }

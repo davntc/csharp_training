@@ -48,13 +48,13 @@ namespace WebAddressbookTests
 
         public ContactHelper SelectContact(int index)
         {
-            // driver.FindElement(By.Id("1")).Click();
+            //driver.FindElement(By.Id("1")).Click();
             //driver.FindElement((By.XPath("//input[@value='Login']"))
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
         }
 
-        public ContactHelper ContAdd(ContactData contact) 
+        public ContactHelper ContAdd(ContactData contact)
         {
             GoToAddingNewContact();
             FillContactFormm(contact);
@@ -64,10 +64,10 @@ namespace WebAddressbookTests
         }
 
         public ContactHelper GoToAddingNewContact()
-            {
+        {
             driver.FindElement(By.LinkText("add new")).Click();
             return this;
-            }
+        }
         public ContactHelper FillContactFormm(ContactData contact)
         {
             Type(By.Name("firstname"), contact.Firstname);
@@ -81,6 +81,7 @@ namespace WebAddressbookTests
         }
         public ContactHelper GoToHomepage()
         {
+
             driver.FindElement(By.LinkText("home page")).Click();
             return this;
         }
@@ -99,9 +100,33 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private string CloseAlertAndGetItsText()
+        public void ContactListCheck(ContactData contact)
         {
-            throw new NotImplementedException();
+
+            if (ContactCreate(1))
+            {
+                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + 1 + "]")).Click();
+            }
+            {
+               
+                GoToAddingNewContact();
+                FillContactFormm(contact);
+                AcceptContactInfo();
+                GoToHomepage();
+                //если в тесте модификации групп пусто этот метод создаёт группу
+            }
+
+        }
+        public bool ContactCreate(int index)
+
+        {
+            return IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]"));
+
+
+            //public string CloseAlertAndGetItsText()
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
