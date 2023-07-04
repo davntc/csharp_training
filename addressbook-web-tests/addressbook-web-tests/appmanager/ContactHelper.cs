@@ -100,28 +100,30 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public void ContactListCheck(ContactData contact)
+        public void ContactListCheck(ContactData newContact)
         {
 
-            if (ContactCreate(1))
+            if (ContactCreated(1))
             {
                 driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + 1 + "]")).Click();
             }
             {
-               
-                GoToAddingNewContact();
-                FillContactFormm(contact);
-                AcceptContactInfo();
-                GoToHomepage();
+
+                InitContactModification();
+                FillContactFormm(newContact);
+                SubmitContactModification();
+                
                 //если в тесте модификации групп пусто этот метод создаёт группу
             }
 
+                
+
         }
-        public bool ContactCreate(int index)
+        public bool ContactCreated(int index)
 
         {
             return IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]"));
-
+            
 
             //public string CloseAlertAndGetItsText()
             {

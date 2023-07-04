@@ -23,7 +23,7 @@ namespace WebAddressbookTests
             ContactData newContact = new ContactData("Petr");
             newContact.Lastname = "Petrov";
 
-            app.Contacts.ContactCreate(1);
+            app.Contacts.ContactCreated(1);
             app.Contacts.ContModify(newContact);
 
 

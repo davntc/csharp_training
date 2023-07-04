@@ -30,6 +30,7 @@ namespace WebAddressbookTests
         public GroupHelper Modify(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
+            GroupListCheck();
             SelectGroup(p);
             InitGroupModification();
             FillGroupForm(newData);
@@ -42,6 +43,7 @@ namespace WebAddressbookTests
         public GroupHelper Remove(int p)
         {
             manager.Navigator.GoToGroupsPage();
+            GroupListCheck();
             SelectGroup(p);
             RemoveGroup();
             ReturnToGroupsPage();
@@ -107,8 +109,7 @@ namespace WebAddressbookTests
                 Type(By.Name("group_header"), "group");
                 Type(By.Name("group_footer"), "created");
                 SubmitGroupCreation();
-                manager.Navigator.GoToGroupsPage();
-                //если в тесте модификации групп пусто этот метод создаёт группу
+                //если в тестах модификации и удаления групп пусто этот метод создаёт группу
             }
 
         }
