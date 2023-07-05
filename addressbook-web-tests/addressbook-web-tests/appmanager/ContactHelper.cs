@@ -23,10 +23,19 @@ namespace WebAddressbookTests
 
         public ContactHelper ContModify(ContactData newContact)
         {
-            SelectContact(1);
+            if (CheckCanSelectContact(1))
+            {
+                SelectContact(1);  
+            }
+            else 
+            {
+                ContAdd(newContact);
+            }
+
             InitContactModification();
             FillContactFormm(newContact);
             SubmitContactModification();
+
             return this;
 
         }
@@ -42,8 +51,15 @@ namespace WebAddressbookTests
         {
             //driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[5]/td[8]/a/img")).Click();
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
-            driver.Navigate().GoToUrl("http://localhost/addressbook/edit.php?id=1");
+            driver.Navigate().GoToUrl($"http://localhost/addressbook/edit.php?id=1");
             return this;
+        }
+
+        public bool CheckCanSelectContact(int index)
+        {
+            return driver
+                .FindElements(By.XPath("(//input[@name='selected[]'])[" + index + "]"))
+                .Any();
         }
 
         public ContactHelper SelectContact(int index)
@@ -86,9 +102,17 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper Remove(int v)
+        public ContactHelper Remove(int v, ContactData newContact)
         {
-            SelectContact(1);
+            if (CheckCanSelectContact(1))
+            {
+                SelectContact(1);
+            }
+            else
+            {
+                ContAdd(newContact);
+            }
+
             RemoveContact(v, true);
             return this;
         }
@@ -100,35 +124,8 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public void ContactListCheck(ContactData newContact)
-        {
-
-            if (ContactCreated(1))
-            {
-                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + 1 + "]")).Click();
-            }
-            {
-
-                InitContactModification();
-                FillContactFormm(newContact);
-                SubmitContactModification();
-                
-                //если в тесте модификации групп пусто этот метод создаёт группу
-            }
-
-                
+                       
 
         }
-        public bool ContactCreated(int index)
-
-        {
-            return IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]"));
-            
-
-            //public string CloseAlertAndGetItsText()
-            {
-                throw new NotImplementedException();
-            }
-        }
+        
     }
-}

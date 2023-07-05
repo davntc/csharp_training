@@ -20,7 +20,7 @@ namespace WebAddressbookTests
         {
 
                         
-            app.Contacts.Remove(1);
+            app.Contacts.Remove(1,new ContactData("123"));
 
 
         }

@@ -30,8 +30,16 @@ namespace WebAddressbookTests
         public GroupHelper Modify(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
-            GroupListCheck();
-            SelectGroup(p);
+            if (CheckCanSelectGroup(1))
+            {
+                SelectGroup(1);
+            }
+            else
+            {
+                InitNewGroupCreation();
+                FillGroupForm(newData);
+                SubmitGroupCreation();
+            }
             InitGroupModification();
             FillGroupForm(newData);
             SubmitGroupModification();
@@ -40,11 +48,19 @@ namespace WebAddressbookTests
             return this;
         }
                 
-        public GroupHelper Remove(int p)
+        public GroupHelper Remove(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
-            GroupListCheck();
-            SelectGroup(p);
+            if (CheckCanSelectGroup(1))
+            {
+                SelectGroup(1);
+            }
+            else
+            {
+                InitNewGroupCreation();
+                FillGroupForm(newData);
+                SubmitGroupCreation();
+            }
             RemoveGroup();
             ReturnToGroupsPage();
             return this;
@@ -84,6 +100,7 @@ namespace WebAddressbookTests
         }
         public GroupHelper RemoveGroup()
         {
+            
             driver.FindElement(By.Name("delete")).Click();
             return this;
         }
@@ -98,22 +115,13 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("edit")).Click();
             return this;
         }
-        public void GroupListCheck()
+
+        public bool CheckCanSelectGroup(int index)
         {
-            if (driver.FindElements(By.CssSelector(".group")).Count == 0)
-
-            {
-                manager.Navigator.GoToGroupsPage();
-                InitNewGroupCreation();
-                Type(By.Name("group_name"), "there is no");
-                Type(By.Name("group_header"), "group");
-                Type(By.Name("group_footer"), "created");
-                SubmitGroupCreation();
-                //если в тестах модификации и удаления групп пусто этот метод создаёт группу
-            }
-
+            return driver
+                .FindElements(By.XPath("(//input[@name='selected[]'])[" + index + "]"))
+                .Any();
         }
-
 
     }
 }
