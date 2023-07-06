@@ -119,9 +119,21 @@ namespace WebAddressbookTests
         public bool CheckCanSelectGroup(int index)
         {
             return driver
-                .FindElements(By.XPath("(//input[@name='selected[]'])[" + index + "]"))
+                .FindElements(By.XPath("(//input[@name='selected[]'])[" + (index +1) + "]"))
                 .Any();
         }
 
+        public List<GroupData> GetGroupList()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            manager.Navigator.GoToGroupsPage();
+            ICollection<IWebElement>elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements)
+            {
+                groups.Add(new GroupData(element.Text));
+            }
+
+            return groups;
+        }
     }
 }

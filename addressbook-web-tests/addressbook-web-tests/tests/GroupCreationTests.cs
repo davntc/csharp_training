@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
 
 
 namespace WebAddressbookTests
@@ -24,10 +25,13 @@ namespace WebAddressbookTests
             group.Header = "test1";
             group.Footer = "test2";
 
-           
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
             app.Groups.Create(group);
-               
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            Assert.AreEqual(oldGroups.Count +1, newGroups.Count);
         }
+
         [Test]
         public void EmptyGroupCreationTest()
         {
@@ -36,11 +40,26 @@ namespace WebAddressbookTests
             group.Header = "";
             group.Footer = "";
 
-           
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
             app.Groups.Create(group);
 
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
         }
 
+        [Test]
+        public void BadNameGroupCreationTest()
+        {
 
+            GroupData group = new GroupData("a'a");
+            group.Header = "";
+            group.Footer = "";
+
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            app.Groups.Create(group);
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+        }
     }
 }

@@ -25,9 +25,9 @@ namespace WebAddressbookTests
         {
             if (CheckCanSelectContact(1))
             {
-                SelectContact(1);  
+                SelectContact(1);
             }
-            else 
+            else
             {
                 ContAdd(newContact);
             }
@@ -123,9 +123,19 @@ namespace WebAddressbookTests
             driver.SwitchTo().Alert().Accept();
             return this;
         }
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> groups = new List<ContactData>();
+            SelectContact(1);
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr.odd"));
+            foreach (IWebElement element in elements)
+            {
+                groups.Add(new ContactData(element.Text));
+            }
 
-                       
+            return groups;
+
 
         }
-        
     }
+}
