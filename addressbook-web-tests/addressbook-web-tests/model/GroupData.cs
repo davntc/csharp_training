@@ -32,7 +32,7 @@ namespace WebAddressbookTests
             return Name == other.Name;
         }
 
-        public int GetHashCode()
+        public override int GetHashCode()
 
         {
             return Name.GetHashCode();

@@ -125,15 +125,16 @@ namespace WebAddressbookTests
         }
         public List<ContactData> GetContactList()
         {
-            List<ContactData> groups = new List<ContactData>();
+            List<ContactData> contacts = new List<ContactData>();
             SelectContact(1);
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr.odd"));
+            //ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr.odd"));
+            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
             foreach (IWebElement element in elements)
             {
-                groups.Add(new ContactData(element.Text));
+                contacts.Add(new ContactData(element.Text));
             }
 
-            return groups;
+            return contacts;
 
 
         }

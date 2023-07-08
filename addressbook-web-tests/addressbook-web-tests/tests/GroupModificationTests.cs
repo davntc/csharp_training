@@ -18,8 +18,13 @@ namespace WebAddressbookTests
             newData.Header = ("yyy");
             newData.Footer = null;
 
-            
-            app.Groups.Modify(0, newData);        
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+            app.Groups.Modify(0, newData);
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+
+            Assert.AreEqual(oldGroups.Count, newGroups.Count);
         }
     }
 }

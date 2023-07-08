@@ -10,8 +10,8 @@ namespace addressbook_web_tests
     public class ContactData : IEquatable<ContactData>
     {
         private string firstname;
-        private string lastname = "";
-        
+        private string lastname;
+        private string text;
 
         public bool Equals(ContactData other)
         {
@@ -23,21 +23,30 @@ namespace addressbook_web_tests
             {
                 return true;
             }
-            return Firstname == other.Firstname;
-           
+             return (Lastname == other.Lastname) && (Firstname == other.Firstname);
+
+
+
 
 
         }
 
-        public int GetHashCode()
+        public override int GetHashCode()
 
         {
             return Firstname.GetHashCode();
         }
-        public ContactData(string firstname)
+        public ContactData(string firstname,string lastname)
         {
             this.firstname = firstname;
+            this.lastname = lastname;
         }
+
+        public ContactData(string text)
+        {
+            this.text = text;
+        }
+
         public string Firstname
         {
             get
@@ -60,5 +69,6 @@ namespace addressbook_web_tests
                 lastname = value;
             }
         }
+               
     }
 }

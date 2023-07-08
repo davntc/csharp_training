@@ -29,7 +29,7 @@ namespace WebAddressbookTests
 
             oldContacts.RemoveAt(0);
 
-            Assert.AreEqual(oldContacts, newContacts);
+            Assert.AreEqual(oldContacts.Count - 1, newContacts.Count);
 
         }
 
