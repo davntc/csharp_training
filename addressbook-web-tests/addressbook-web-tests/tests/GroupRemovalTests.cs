@@ -20,6 +20,17 @@ namespace WebAddressbookTests
         {
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
+            if (app.Groups.CheckCanSelectGroup(1))
+            {
+                app.Groups.SelectGroup(1);
+            }
+            else
+            {
+                app.Groups.InitNewGroupCreation();
+                app.Groups.FillGroupForm(new GroupData(""));
+                app.Groups.SubmitGroupCreation();
+            }
+
             app.Groups.Remove(0, new GroupData(""));
 
             List<GroupData> newGroups = app.Groups.GetGroupList();

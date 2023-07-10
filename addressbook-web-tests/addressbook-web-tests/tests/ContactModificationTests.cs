@@ -19,7 +19,14 @@ namespace WebAddressbookTests
         [Test]
         public void ContactModificationTest()
         {
-
+            if (app.Contacts.CheckCanSelectContact(1))
+            {
+                app.Contacts.SelectContact(1);
+            }
+            else
+            {
+                app.Contacts.ContAdd(new ContactData(""));
+            }
 
             ContactData newContact = new ContactData("Petr", "Petrov");
 

@@ -20,6 +20,14 @@ namespace WebAddressbookTests
         [Test]
         public void ContactRemovalTest()
         {
+            if (app.Contacts.CheckCanSelectContact(1))
+            {
+                app.Contacts.SelectContact(1);
+            }
+            else
+            {
+                app.Contacts.ContAdd(new ContactData(""));
+            }
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
 

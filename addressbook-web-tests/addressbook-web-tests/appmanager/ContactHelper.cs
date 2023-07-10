@@ -23,15 +23,7 @@ namespace WebAddressbookTests
 
         public ContactHelper ContModify(ContactData newContact)
         {
-            if (CheckCanSelectContact(1))
-            {
-                SelectContact(1);
-            }
-            else
-            {
-                ContAdd(newContact);
-            }
-
+            
             InitContactModification();
             FillContactFormm(newContact);
             SubmitContactModification();
@@ -104,15 +96,7 @@ namespace WebAddressbookTests
 
         public ContactHelper Remove(int v, ContactData newContact)
         {
-            if (CheckCanSelectContact(1))
-            {
-                SelectContact(1);
-            }
-            else
-            {
-                ContAdd(newContact);
-            }
-
+            
             RemoveContact(v, true);
             return this;
         }
