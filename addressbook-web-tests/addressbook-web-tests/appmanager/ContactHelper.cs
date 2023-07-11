@@ -43,7 +43,7 @@ namespace WebAddressbookTests
         {
             //driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[5]/td[8]/a/img")).Click();
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
-            driver.Navigate().GoToUrl($"http://localhost/addressbook/edit.php?id=1");
+            //driver.Navigate().GoToUrl($"http://localhost/addressbook/edit.php?id=1");
             return this;
         }
 
@@ -110,8 +110,8 @@ namespace WebAddressbookTests
         public List<ContactData> GetContactList()
         {
             List<ContactData> contacts = new List<ContactData>();
-            SelectContact(1);
-            //ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr.odd"));
+            //SelectContact(1);
+            // ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr.odd"));
             ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
             foreach (IWebElement element in elements)
             {

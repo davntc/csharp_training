@@ -37,7 +37,7 @@ namespace WebAddressbookTests
 
             oldContacts.RemoveAt(0);
 
-            Assert.AreEqual(oldContacts.Count - 1, newContacts.Count);
+            Assert.AreEqual(oldContacts.Count, newContacts.Count - 1);
 
         }
 
