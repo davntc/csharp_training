@@ -21,7 +21,7 @@ namespace WebAddressbookTests
         {
             if (app.Contacts.CheckCanSelectContact(1))
             {
-                app.Contacts.SelectContact(1);
+                
             }
             else
             {

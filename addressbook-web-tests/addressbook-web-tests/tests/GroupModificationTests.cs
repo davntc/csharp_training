@@ -15,7 +15,7 @@ namespace WebAddressbookTests
         {
             if (app.Groups.CheckCanSelectGroup(1))
             {
-                app.Groups.SelectGroup(1);
+               // app.Groups.SelectGroup(1);
             }
             else
             {
@@ -29,11 +29,14 @@ namespace WebAddressbookTests
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            app.Groups.Modify(0, newData);
+            app.Groups.Modify(0,newData);
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
 
-            Assert.AreEqual(oldGroups.Count, newGroups.Count);
+            oldGroups[0].Name = newData.Name;
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }
