@@ -23,7 +23,7 @@ namespace WebAddressbookTests
         {
             if (app.Contacts.CheckCanSelectContact(1))
             {
-                app.Contacts.SelectContact(1);
+                
             }
             else
             {
@@ -31,11 +31,15 @@ namespace WebAddressbookTests
             }
             List<ContactData> oldContacts = app.Contacts.GetContactList();
 
+            app.Contacts.SelectContact(1);
+
             app.Contacts.Remove(1,new ContactData(""));
             
             List<ContactData> newContacts = app.Contacts.GetContactList();
 
-            Assert.AreEqual(oldContacts.Count - 1, newContacts.Count);
+            //oldContacts.RemoveAt(0);
+
+            Assert.AreEqual(oldContacts.Count -1 , newContacts.Count);
 
         }
 

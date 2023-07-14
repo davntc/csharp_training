@@ -96,9 +96,8 @@ namespace WebAddressbookTests
 
         public bool CheckCanSelectGroup(int index)
         {
-            return driver
-                .FindElements(By.XPath("(//input[@name='selected[]'])[" + (index +1) + "]"))
-                .Any();
+            return IsElementPresent(By.CssSelector("span.group"));
+            
         }
 
         public List<GroupData> GetGroupList()

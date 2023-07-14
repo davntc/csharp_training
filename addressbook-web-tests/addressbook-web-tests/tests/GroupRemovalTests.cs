@@ -22,7 +22,7 @@ namespace WebAddressbookTests
 
             if (app.Groups.CheckCanSelectGroup(1))
             {
-                app.Groups.SelectGroup(1);
+                
             }
             else
             {

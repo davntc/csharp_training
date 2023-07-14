@@ -49,17 +49,15 @@ namespace WebAddressbookTests
 
         public bool CheckCanSelectContact(int index)
         {
-            return driver
-                .FindElements(By.XPath("(//input[@name='selected[]'])[" + index + "]"))
-                .Any();
+           return IsElementPresent(By.Name("entry"));
         }
 
         public ContactHelper SelectContact(int index)
         {
-            //driver.FindElement(By.Id("1")).Click();
-            //driver.FindElement((By.XPath("//input[@value='Login']"))
+            
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
+
         }
 
         public ContactHelper ContAdd(ContactData contact)
